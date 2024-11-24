@@ -51,7 +51,32 @@ public class TestesLoginStep {
 
     @E("^deve escrever login valido$")
     public void deveEscreverLoginValido() {
-        loginPage.setEscreverLogin();
+        loginPage.setEscreverLogin(Constantes.STANDARD_USER);
+    }
+
+    @E("^deve escrever login performanceGlitchUser$")
+    public void deveEscreverLoginPerformanceGlitchUser() {
+        loginPage.setEscreverLogin(Constantes.PERFORMANCE_GLITCH_USER);
+    }
+
+    @E("^deve escrever login errorUser$")
+    public void deveEscreverLoginErrorUser() {
+        loginPage.setEscreverLogin(Constantes.ERROR_USER);
+    }
+
+    @E("^deve escrever login visualUser$")
+    public void deveEscreverLoginVisualUser() {
+        loginPage.setEscreverLogin(Constantes.ERROR_USER);
+    }
+
+    @E("^deve escrever login lockedOutUser$")
+    public void deveEscreverLoginLockedOutUser() {
+        loginPage.setEscreverLogin(Constantes.LOCKED_USER);
+    }
+
+    @E("^deve escrever login problemUser$")
+    public void deveEscreverLoginProblemUser() {
+        loginPage.setEscreverLogin(Constantes.LOCKED_PROBLEM_USER);
     }
 
     @E("^deve escrever psw valida$")
@@ -78,6 +103,12 @@ public class TestesLoginStep {
             Assert.assertTrue(loginPage.setCheckPaginaLogin()); }
     }
 
+    @E("^deve verificar mensagem de erro$")
+    public void deveVerificarMensagemDeErro() {
+        dsl.esperarCarregarPagina(Constantes.NUMERO_2);
+        Assert.assertTrue(loginPage.setCheckPaginaLogin());
+    }
+
     @E("^deve verificar pagina produtos$")
     public void deveVerificarPaginaProdutos() {
         dsl.esperarCarregarPagina(Constantes.NUMERO_2);
@@ -88,7 +119,7 @@ public class TestesLoginStep {
     @E("^deve fazer logout$")
     public void deveFazerLagout() {
         loginPage.setNavProductsClick();
-        dsl.esperarCarregarPagina(Constantes.NUMERO_3);
+        dsl.esperarAssertELementoTagName(Constantes.NUMERO_5, Constantes.TITLE_PROCUCTS);
         loginPage.setLogoutMover();
         loginPage.setLogoutClick();
 
