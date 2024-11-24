@@ -1,6 +1,5 @@
 package com.saucedemo.dsl;
 
-import com.saucedemo.constantes.Constantes;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;

@@ -11,6 +11,8 @@ public class LoginPage {
     String userName = "user-name";
     String password = "password";
     String loginError = "//*[@id=\"login_button_container\"]/div/form/div[3]";
+    String erroPsw = "//*[@id=\"login_button_container\"]/div/form/div[3]/h3";
+    String erroLockedUser = "//*[@id=\"login_button_container\"]/div/form/div[3]/h3";
     String navProducts = "react-burger-menu-btn";
     String navCloseProducts = "react-burger-cross-btn";
     String logout = "//*[@id=\"logout_sidebar_link\"]";
@@ -33,8 +35,22 @@ public class LoginPage {
         dsl.escreverById(password, Constantes.PSW_VALIDO);
     }
 
+    public void setEscreverPswInvalido() {
+        dsl.escreverById(password, Constantes.PSW_INVALIDO);
+    }
+
     public boolean setCheckPaginaLogin() {
     return dsl.checarElementoByXpath(credentials, Constantes.LOGIN_CREDENTIALS);
+
+    }
+
+    public boolean setCheckPaginaLoginLockedUser() {
+    return dsl.checarElementoByXpath(erroLockedUser, Constantes.LOGIN_LOCKED_ERROR);
+
+    }
+
+    public boolean setCheckErroPswInvalido() {
+    return dsl.checarElementoByXpath(erroPsw, Constantes.LOGIN_INVALID_ERROR);
 
     }
 

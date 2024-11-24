@@ -7,12 +7,13 @@ public class Constantes {
     public static final String TITLE_PROCUCTS = "Products";
     public static final String LOGIN = "Login";
     public static final String LOGIN_CREDENTIALS = "Accepted usernames are:";
-    public static final String LOGIN_ERROR = "Epic sadface: Sorry, this user has been locked out.";
+    public static final String LOGIN_LOCKED_ERROR = "Epic sadface: Sorry, this user has been locked out.";
+    public static final String LOGIN_INVALID_ERROR = "Epic sadface: Username and password do not match any user in this service";
     public static final String PATH_CHROMEDRIVER = "src/test/resources/browser/chromedriver";
     public static final Integer NUMERO_2 = 2;
     public static final Integer NUMERO_3 = 3;
     public static final Integer NUMERO_4 = 4;
-    public static final Integer NUMERO_5 = 5;
+    public static final Integer NUMERO_10 = 10;
     public static final Integer NUMERO_6 = 6;
     public static final String STANDARD_USER = "standard_user";
     public static final String LOCKED_USER = "locked_out_user";

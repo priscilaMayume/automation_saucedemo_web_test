@@ -4,7 +4,6 @@ import com.saucedemo.constantes.Constantes;
 import com.saucedemo.dsl.Dsl;
 import com.saucedemo.pages.LoginPage;
 
-import com.saucedemo.pages.ProductPage;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
@@ -19,7 +18,6 @@ public class TestesLoginStep {
     private Dsl dsl;
     public Constantes constantes;
     public LoginPage loginPage;
-    public ProductPage productPage;
 
     public WebDriver acessarWeb() {
         System.setProperty("webdriver.chrome.driver", constantes.PATH_CHROMEDRIVER);
@@ -69,6 +67,11 @@ public class TestesLoginStep {
         loginPage.setEscreverLogin(Constantes.ERROR_USER);
     }
 
+    @E("^deve escrever login standardUser")
+    public void deveEscreverStandardUser() {
+        loginPage.setEscreverLogin(Constantes.STANDARD_USER);
+    }
+
     @E("^deve escrever login lockedOutUser$")
     public void deveEscreverLoginLockedOutUser() {
         loginPage.setEscreverLogin(Constantes.LOCKED_USER);
@@ -84,6 +87,11 @@ public class TestesLoginStep {
         loginPage.setEscreverPswValido();
     }
 
+    @E("^deve escrever psw invalido$")
+    public void deveEscreverPswInvalido() {
+        loginPage.setEscreverPswInvalido();
+    }
+
 
     @E("^deve clicar em loginButton$")
     public void deveClicarEmLoginButton() {
@@ -97,16 +105,28 @@ public class TestesLoginStep {
 
     }
 
+    @E("^deve fechar todos os navegadores$")
+    public void deveFecharTodosOsNavegadores() {
+        dsl.fecharNavegador();
+
+    }
+
     @E("^deve verificar pagina login$")
     public void deveVerificarPaginaLogin() {
         dsl.esperarAssertELementoTagName(Constantes.NUMERO_2, Constantes.TITLE_SAUCEDEMO); {
             Assert.assertTrue(loginPage.setCheckPaginaLogin()); }
     }
 
-    @E("^deve verificar mensagem de erro$")
-    public void deveVerificarMensagemDeErro() {
+    @E("^deve verificar mensagem de erro lockedUser$")
+    public void deveVerificarMensagemDeErroLockedUser() {
         dsl.esperarCarregarPagina(Constantes.NUMERO_2);
         Assert.assertTrue(loginPage.setCheckPaginaLogin());
+    }
+
+    @E("^deve verificar mensagem de psw invalido")
+    public void deveVerificarMensagemDePswInvalido() {
+        dsl.esperarCarregarPagina(Constantes.NUMERO_2);
+        Assert.assertTrue(loginPage.setCheckErroPswInvalido());
     }
 
     @E("^deve verificar pagina produtos$")
@@ -119,7 +139,7 @@ public class TestesLoginStep {
     @E("^deve fazer logout$")
     public void deveFazerLagout() {
         loginPage.setNavProductsClick();
-        dsl.esperarAssertELementoTagName(Constantes.NUMERO_5, Constantes.TITLE_PROCUCTS);
+        dsl.esperarAssertELementoTagName(Constantes.NUMERO_10, Constantes.TITLE_PROCUCTS);
         loginPage.setLogoutMover();
         loginPage.setLogoutClick();
 
